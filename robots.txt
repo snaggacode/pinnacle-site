@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pinnacleenterprisesgroup.com.au/sitemap.xml
