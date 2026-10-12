@@ -4,14 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pinnacle Enterprises Group</title>
-<meta name="description" content="Pinnacle Enterprises Group Pty Ltd is an Australian company based in Perth, Western Australia, building and operating a portfolio of online businesses." />
+<meta name="description" content="Pinnacle Enterprises Group Pty Ltd is an Australian company based in Perth, Western Australia, building and operating a portfolio of online businesses, including the fitness coaching app Planr." />
 <link rel="canonical" href="https://pinnacleenterprisesgroup.com.au/" />
 <meta name="robots" content="index, follow" />
 
 <!-- Open Graph (Facebook, LinkedIn, etc.) -->
 <meta property="og:site_name" content="Pinnacle Enterprises Group" />
 <meta property="og:title" content="Pinnacle Enterprises Group Pty Ltd" />
-<meta property="og:description" content="An Australian company building and operating online businesses." />
+<meta property="og:description" content="An Australian company building and operating online businesses, including the fitness coaching app Planr." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://pinnacleenterprisesgroup.com.au/" />
 <meta property="og:locale" content="en_AU" />
@@ -19,7 +19,7 @@
 <!-- Twitter/X card -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Pinnacle Enterprises Group Pty Ltd" />
-<meta name="twitter:description" content="An Australian company building and operating online businesses." />
+<meta name="twitter:description" content="An Australian company building and operating online businesses, including the fitness coaching app Planr." />
 
 <!-- Structured data: tells Google this is an Organization -->
 <script type="application/ld+json">
@@ -37,7 +37,17 @@
     "addressRegion": "WA",
     "addressCountry": "AU"
   },
-  "description": "An Australian company building and operating a portfolio of online businesses, from software to consumer brands."
+  "description": "An Australian company building and operating a portfolio of online businesses, including the fitness coaching app Planr.",
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "SoftwareApplication",
+      "name": "Planr",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "iOS",
+      "url": "https://www.planrfit.com"
+    }
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,16 +56,18 @@
 <style>
   :root {
     --bg: #0f1115;
+    --bg-soft: #14171d;
     --ink: #f2f3f5;
     --ink-soft: #9aa0ab;
     --ink-faint: #5a606b;
     --line: #23262e;
     --accent: #c9a15a;      /* muted gold — corporate, not flashy */
-    --max: 640px;
+    --max: 680px;
   }
   @media (prefers-color-scheme: light) {
     :root {
       --bg: #faf9f7;
+      --bg-soft: #f1efea;
       --ink: #16181d;
       --ink-soft: #575d68;
       --ink-faint: #9aa0ab;
@@ -65,6 +77,7 @@
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
+  html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
     color: var(--ink);
@@ -78,8 +91,16 @@
   }
   .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 28px; }
 
+  /* Header / nav */
   header {
-    padding: 40px 0 0;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
   }
   .mark {
     font-family: "Fraunces", Georgia, serif;
@@ -87,18 +108,25 @@
     font-size: 21px;
     letter-spacing: -0.01em;
     color: var(--ink);
+    text-decoration: none;
   }
   .mark span { color: var(--accent); }
-
-  main {
-    flex: 1;
+  .nav-links {
     display: flex;
-    align-items: center;
-    padding: 72px 0;
+    gap: 24px;
+    font-size: 15px;
   }
-  .hero {
-    max-width: 540px;
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
   }
+  .nav-links a:hover { color: var(--ink); }
+
+  main { flex: 1; }
+
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  section.hero { padding: 88px 0 80px; }
+
   h1 {
     font-family: "Fraunces", Georgia, serif;
     font-weight: 500;
@@ -106,73 +134,329 @@
     line-height: 1.08;
     letter-spacing: -0.02em;
     margin: 0 0 24px;
+    max-width: 14ch;
   }
   h1 em { color: var(--accent); font-style: italic; }
   .lead {
     font-size: 19px;
     color: var(--ink-soft);
-    margin: 0 0 40px;
-    max-width: 46ch;
+    margin: 0;
+    max-width: 48ch;
   }
-  .meta {
-    border-top: 1px solid var(--line);
-    padding-top: 28px;
+
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 20px;
+  }
+  h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+  p { margin: 0 0 18px; color: var(--ink-soft); }
+  p:last-child { margin-bottom: 0; }
+  .body-ink { color: var(--ink); }
+
+  /* Approach list */
+  .approach {
     display: grid;
-    gap: 4px;
+    gap: 2px;
+    margin-top: 8px;
   }
-  .meta .row {
+  .approach .item {
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  .approach .item:first-child { border-top: none; }
+  .approach .item h4 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 500;
+    font-size: 19px;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .approach .item p { margin: 0; font-size: 16px; }
+
+  /* Venture card */
+  .venture {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .venture .tag {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  .venture h3 { margin-bottom: 12px; }
+  .venture h3 span { color: var(--accent); }
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    display: grid;
+    gap: 10px;
+  }
+  .feature-list li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+  .feature-list li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .links {
     display: flex;
-    gap: 14px;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 24px;
     font-size: 15px;
   }
-  .meta .k {
-    color: var(--ink-faint);
-    min-width: 96px;
+  .links a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
   }
-  .meta .v { color: var(--ink-soft); }
-  .meta a { color: var(--accent); text-decoration: none; }
-  .meta a:hover { text-decoration: underline; }
+  .links a:hover { border-bottom-color: var(--accent); }
+
+  /* Contact */
+  .contact-grid {
+    display: grid;
+    gap: 2px;
+    margin-top: 4px;
+  }
+  .contact-grid .row {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    font-size: 16px;
+  }
+  .contact-grid .row:first-child { border-top: none; }
+  .contact-grid .k {
+    color: var(--ink-faint);
+    min-width: 120px;
+  }
+  .contact-grid .v { color: var(--ink); }
+  .contact-grid a { color: var(--accent); text-decoration: none; }
+  .contact-grid a:hover { text-decoration: underline; }
 
   footer {
-    padding: 28px 0 40px;
+    padding: 36px 0 44px;
     font-size: 13px;
     color: var(--ink-faint);
   }
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 18px;
+  }
+  .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--ink-faint); text-decoration: none; }
+  footer a:hover { color: var(--ink-soft); }
+  .footer-legal {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
 
-  @media (max-width: 480px) {
-    .meta .row { flex-direction: column; gap: 0; }
-    .meta .k { min-width: 0; }
-    .meta .row + .row { margin-top: 12px; }
+  @media (max-width: 540px) {
+    .nav-links { gap: 18px; font-size: 14px; }
+    section { padding: 56px 0; }
+    .venture { padding: 24px; }
+    .contact-grid .row { flex-direction: column; gap: 2px; }
+    .contact-grid .k { min-width: 0; }
+    .footer-top { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <div class="mark">Pinnacle<span>.</span></div>
+      <nav class="nav">
+        <a href="#top" class="mark">Pinnacle<span>.</span></a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#ventures">What we do</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
     </div>
   </header>
 
-  <main>
-    <div class="wrap">
-      <div class="hero">
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
         <h1>Building and operating <em>online businesses</em>.</h1>
         <p class="lead">
-          Pinnacle Enterprises Group is an Australian company that builds, owns and operates
-          a portfolio of digital ventures — from software to consumer brands.
+          Pinnacle Enterprises Group is an Australian company that builds, owns and
+          operates a portfolio of digital ventures — from software to consumer brands.
         </p>
-        <div class="meta">
-          <div class="row"><span class="k">Company</span><span class="v">Pinnacle Enterprises Group Pty Ltd</span></div>
-          <div class="row"><span class="k">Location</span><span class="v">Perth, Western Australia</span></div>
-          <div class="row"><span class="k">Contact</span><span class="v"><a href="mailto:hello@pinnacleenterprisesgroup.com.au">hello@pinnacleenterprisesgroup.com.au</a></span></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <h2>About us</h2>
+        <h3>An Australian company based in Perth.</h3>
+        <p>
+          Pinnacle Enterprises Group Pty Ltd is a privately held Australian company,
+          registered in Western Australia in 2026 and based in Perth. We design, develop
+          and operate our own online businesses, holding each venture under one company so
+          they can share the same standards, infrastructure and long-term thinking.
+        </p>
+        <p>
+          Our focus is on building products people genuinely want to use — software and
+          consumer brands that are well made, honestly marketed, and built to last rather
+          than to flip. Everything we run, we own and operate ourselves, from the first
+          line of code to day-to-day support.
+        </p>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="wrap">
+        <h2>How we work</h2>
+        <h3>Owned, operated, built to last.</h3>
+        <div class="approach">
+          <div class="item">
+            <h4>We build what we operate</h4>
+            <p>
+              Every venture under Pinnacle is one we've built and run ourselves — not
+              acquired to flip. That means we're responsible for the product, the people
+              who use it, and the support behind it.
+            </p>
+          </div>
+          <div class="item">
+            <h4>One company, many ventures</h4>
+            <p>
+              Holding our businesses under a single company lets them share the same
+              engineering, infrastructure and standards, so each one benefits from the
+              work that came before it.
+            </p>
+          </div>
+          <div class="item">
+            <h4>Australian and independent</h4>
+            <p>
+              We're a privately held, self-funded Australian company. We answer to the
+              people who use our products — not outside investors — and we plan for the
+              long term.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section id="ventures">
+      <div class="wrap">
+        <h2>What we do</h2>
+        <h3>Our ventures.</h3>
+        <p style="margin-bottom: 28px;">
+          Pinnacle builds and operates a growing portfolio of online businesses. Our
+          flagship product is Planr.
+        </p>
+
+        <div class="venture">
+          <div class="tag">Software · iOS</div>
+          <h3>Planr<span>.</span></h3>
+          <p class="body-ink" style="margin-bottom: 12px;">
+            A fitness coaching app for the App Store.
+          </p>
+          <p>
+            Planr brings coaches and their clients together in one place, and gives solo
+            athletes the tools to train on their own. Coaches build and assign training
+            programs, review their clients' progress, and stay in touch — while athletes
+            follow their plan, log every session, and track how they're improving over
+            time. Planr is designed, developed and published by Pinnacle Enterprises Group.
+          </p>
+          <ul class="feature-list">
+            <li>Build and assign structured training programs</li>
+            <li>Log sessions, sets, reps and effort as you train</li>
+            <li>Track progress, bodyweight and nutrition over time</li>
+            <li>Coach and client messaging to stay in sync</li>
+            <li>Tools for both coached athletes and solo users</li>
+          </ul>
+          <div class="links">
+            <a href="https://www.planrfit.com" target="_blank" rel="noopener">planrfit.com</a>
+            <a href="https://apps.apple.com/au/app/planr/id6761987757" target="_blank" rel="noopener">Download on the App Store</a>
+          </div>
+        </div>
+
+        <p style="margin-top: 28px;">
+          Alongside Planr, Pinnacle develops and operates a number of online retail
+          ventures, bringing the same approach to design, quality and customer support.
+          We're always working on what's next.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2>Contact us</h2>
+        <h3>Get in touch.</h3>
+        <p style="margin-bottom: 24px;">
+          For any enquiries about Pinnacle Enterprises Group or our products, the best
+          way to reach us is by email — we read every message and aim to reply within
+          one to two business days.
+        </p>
+        <div class="contact-grid">
+          <div class="row">
+            <span class="k">Email</span>
+            <span class="v"><a href="mailto:hello@pinnacleenterprisesgroup.com.au">hello@pinnacleenterprisesgroup.com.au</a></span>
+          </div>
+          <div class="row">
+            <span class="k">Company</span>
+            <span class="v">Pinnacle Enterprises Group Pty Ltd</span>
+          </div>
+          <div class="row">
+            <span class="k">ABN</span>
+            <span class="v">56 702 365 160</span>
+          </div>
+          <div class="row">
+            <span class="k">Location</span>
+            <span class="v">Perth, Western Australia</span>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="wrap">
-      © 2026 Pinnacle Enterprises Group Pty Ltd. All rights reserved.
+      <div class="footer-top">
+        <span class="mark" style="font-size:18px;">Pinnacle<span>.</span></span>
+        <div class="footer-links">
+          <a href="mailto:hello@pinnacleenterprisesgroup.com.au">Contact</a>
+          <a href="https://www.planrfit.com" target="_blank" rel="noopener">Planr</a>
+          <a href="https://www.planrfit.com/privacy.html" target="_blank" rel="noopener">Privacy</a>
+          <a href="https://www.planrfit.com/terms.html" target="_blank" rel="noopener">Terms</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        © 2026 Pinnacle Enterprises Group Pty Ltd · ABN 56 702 365 160 · Perth, Western Australia
+      </div>
     </div>
   </footer>
 </body>
